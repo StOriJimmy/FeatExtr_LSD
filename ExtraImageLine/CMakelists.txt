@@ -1,0 +1,13 @@
+Project(ExtraImageLine)
+file (GLOB HEADERS "*.h" "*.hpp")
+file (GLOB SOURCES "*.cpp")
+
+set(SRCS_FILES ${HEADERS} ${SOURCES})
+
+add_executable (${PROJECT_NAME} ${SRCS_FILES})
+
+target_link_libraries(${PROJECT_NAME}
+	${NEEDED_OPENCV_MODULE})
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+	${OpenCV_INCLUDE_DIRS})
