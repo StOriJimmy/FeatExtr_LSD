@@ -1,15 +1,22 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
-#include <tchar.h>
+//#include <tchar.h>
+
 
 #include <limits>
 #include <string>
 #include <time.h>
-#include "opencv2/highgui/highgui.hpp"
+
+#include "opencv2/highgui.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/calib3d.hpp"
+
+
+
+
+
 
 inline std::vector<std::string> _splitString(char* str, const char* seps)
 {
@@ -24,7 +31,9 @@ inline std::vector<std::string> _splitString(char* str, const char* seps)
 	return sub_strs;
 }
 
-int _tmain(int argc, _TCHAR* argv[])
+//int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char * argv[])
+//int main(int argc, char* argv[]);
 {
 	auto start_time = clock();
 	if (argc != 2) {
@@ -32,7 +41,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		return 1;
 	}
 	std::string lbuf;
-	std::string tsk_path = argv[1];
+	std::string tsk_path =argv[1];
 	std::ifstream fin;
 	fin.open(tsk_path.c_str());
 	if (!fin.is_open()) {
@@ -42,8 +51,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	char img_path[1024], output_path[1024];
 	float m_length(-1);
 	getline(fin, lbuf);
-	char sbuf[4096]; strcpy(sbuf, lbuf.c_str());
+	char sbuf[4096]; 
+	strcpy(sbuf, lbuf.c_str());
 	std::vector<std::string> seps = _splitString(sbuf, " ");
+	std::cout<<seps.size()<<std::endl;
 	if (seps.size() < 2) {
 		fin.close(); return 1;		
 	}

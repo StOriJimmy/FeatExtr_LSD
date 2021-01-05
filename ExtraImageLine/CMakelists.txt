@@ -1,13 +1,21 @@
-Project(ExtraImageLine)
+cmake_minimum_required (VERSION 3.0)
+cmake_policy(VERSION 3.0)
+
+project(LSD C CXX)
+
+find_package(OpenCV REQUIRED
+             PATHS /home/jc/Documents/package)
+include_directories(${OpenCV_INCLUDE_DIRS})
+link_libraries(${OpenCV_LIBS})
+
 file (GLOB HEADERS "*.h" "*.hpp")
 file (GLOB SOURCES "*.cpp")
-
+  
 set(SRCS_FILES ${HEADERS} ${SOURCES})
-
+  
 add_executable (${PROJECT_NAME} ${SRCS_FILES})
+#target_link_libraries(${PROJECT_NAME} opencv)
 
-target_link_libraries(${PROJECT_NAME}
-	${NEEDED_OPENCV_MODULE})
-
-target_include_directories(${PROJECT_NAME} PUBLIC
-	${OpenCV_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+  
+ 
